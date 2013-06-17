@@ -1,0 +1,319 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E1EBDED41769617600B39704 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EBDED31769617600B39704 /* UIKit.framework */; };
+		E1EBDED61769617600B39704 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EBDED51769617600B39704 /* Foundation.framework */; };
+		E1EBDED81769617600B39704 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EBDED71769617600B39704 /* CoreGraphics.framework */; };
+		E1EBDEDE1769617600B39704 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1EBDEDC1769617600B39704 /* InfoPlist.strings */; };
+		E1EBDEE01769617600B39704 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBDEDF1769617600B39704 /* main.m */; };
+		E1EBDEE41769617600B39704 /* MultiScreenAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBDEE31769617600B39704 /* MultiScreenAppDelegate.m */; };
+		E1EBDEE61769617600B39704 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EBDEE51769617600B39704 /* Default.png */; };
+		E1EBDEE81769617600B39704 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EBDEE71769617600B39704 /* Default@2x.png */; };
+		E1EBDEEA1769617600B39704 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1EBDEE91769617600B39704 /* Default-568h@2x.png */; };
+		E1EBDEED1769617600B39704 /* MultiScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBDEEC1769617600B39704 /* MultiScreenViewController.m */; };
+		E1EBDEFC1769626500B39704 /* ScreenOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBDEF71769626500B39704 /* ScreenOneViewController.m */; };
+		E1EBDEFD1769626500B39704 /* ScreenOneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EBDEF81769626500B39704 /* ScreenOneViewController.xib */; };
+		E1EBDEFE1769626500B39704 /* ScreenTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EBDEFA1769626500B39704 /* ScreenTwoViewController.m */; };
+		E1EBDEFF1769626500B39704 /* ScreenTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EBDEFB1769626500B39704 /* ScreenTwoViewController.xib */; };
+		E1EBDF011769673900B39704 /* MultiScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1EBDF001769673900B39704 /* MultiScreenViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E1EBDED01769617600B39704 /* MultiScreenExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiScreenExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1EBDED31769617600B39704 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E1EBDED51769617600B39704 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E1EBDED71769617600B39704 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E1EBDEDB1769617600B39704 /* MultiScreenExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultiScreenExample-Info.plist"; sourceTree = "<group>"; };
+		E1EBDEDD1769617600B39704 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1EBDEDF1769617600B39704 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E1EBDEE11769617600B39704 /* MultiScreenExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MultiScreenExample-Prefix.pch"; sourceTree = "<group>"; };
+		E1EBDEE21769617600B39704 /* MultiScreenAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiScreenAppDelegate.h; sourceTree = "<group>"; };
+		E1EBDEE31769617600B39704 /* MultiScreenAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiScreenAppDelegate.m; sourceTree = "<group>"; };
+		E1EBDEE51769617600B39704 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E1EBDEE71769617600B39704 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E1EBDEE91769617600B39704 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E1EBDEEB1769617600B39704 /* MultiScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiScreenViewController.h; sourceTree = "<group>"; };
+		E1EBDEEC1769617600B39704 /* MultiScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiScreenViewController.m; sourceTree = "<group>"; };
+		E1EBDEF61769626500B39704 /* ScreenOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenOneViewController.h; sourceTree = "<group>"; };
+		E1EBDEF71769626500B39704 /* ScreenOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenOneViewController.m; sourceTree = "<group>"; };
+		E1EBDEF81769626500B39704 /* ScreenOneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenOneViewController.xib; sourceTree = "<group>"; };
+		E1EBDEF91769626500B39704 /* ScreenTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenTwoViewController.h; sourceTree = "<group>"; };
+		E1EBDEFA1769626500B39704 /* ScreenTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenTwoViewController.m; sourceTree = "<group>"; };
+		E1EBDEFB1769626500B39704 /* ScreenTwoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenTwoViewController.xib; sourceTree = "<group>"; };
+		E1EBDF001769673900B39704 /* MultiScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiScreenViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E1EBDECD1769617500B39704 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EBDED41769617600B39704 /* UIKit.framework in Frameworks */,
+				E1EBDED61769617600B39704 /* Foundation.framework in Frameworks */,
+				E1EBDED81769617600B39704 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E1EBDEC71769617500B39704 = {
+			isa = PBXGroup;
+			children = (
+				E1EBDED91769617600B39704 /* MultiScreenExample */,
+				E1EBDED21769617600B39704 /* Frameworks */,
+				E1EBDED11769617600B39704 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E1EBDED11769617600B39704 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1EBDED01769617600B39704 /* MultiScreenExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E1EBDED21769617600B39704 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1EBDED31769617600B39704 /* UIKit.framework */,
+				E1EBDED51769617600B39704 /* Foundation.framework */,
+				E1EBDED71769617600B39704 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1EBDED91769617600B39704 /* MultiScreenExample */ = {
+			isa = PBXGroup;
+			children = (
+				E1EBDEE21769617600B39704 /* MultiScreenAppDelegate.h */,
+				E1EBDEE31769617600B39704 /* MultiScreenAppDelegate.m */,
+				E1EBDEEB1769617600B39704 /* MultiScreenViewController.h */,
+				E1EBDEEC1769617600B39704 /* MultiScreenViewController.m */,
+				E1EBDF001769673900B39704 /* MultiScreenViewController.xib */,
+				E1EBDEF61769626500B39704 /* ScreenOneViewController.h */,
+				E1EBDEF71769626500B39704 /* ScreenOneViewController.m */,
+				E1EBDEF81769626500B39704 /* ScreenOneViewController.xib */,
+				E1EBDEF91769626500B39704 /* ScreenTwoViewController.h */,
+				E1EBDEFA1769626500B39704 /* ScreenTwoViewController.m */,
+				E1EBDEFB1769626500B39704 /* ScreenTwoViewController.xib */,
+				E1EBDEDA1769617600B39704 /* Supporting Files */,
+			);
+			path = MultiScreenExample;
+			sourceTree = "<group>";
+		};
+		E1EBDEDA1769617600B39704 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1EBDEDB1769617600B39704 /* MultiScreenExample-Info.plist */,
+				E1EBDEDC1769617600B39704 /* InfoPlist.strings */,
+				E1EBDEDF1769617600B39704 /* main.m */,
+				E1EBDEE11769617600B39704 /* MultiScreenExample-Prefix.pch */,
+				E1EBDEE51769617600B39704 /* Default.png */,
+				E1EBDEE71769617600B39704 /* Default@2x.png */,
+				E1EBDEE91769617600B39704 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E1EBDECF1769617500B39704 /* MultiScreenExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1EBDEF31769617600B39704 /* Build configuration list for PBXNativeTarget "MultiScreenExample" */;
+			buildPhases = (
+				E1EBDECC1769617500B39704 /* Sources */,
+				E1EBDECD1769617500B39704 /* Frameworks */,
+				E1EBDECE1769617500B39704 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MultiScreenExample;
+			productName = MultiScreenExample;
+			productReference = E1EBDED01769617600B39704 /* MultiScreenExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E1EBDEC81769617500B39704 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MultiScreen;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Ali Muzaffar";
+			};
+			buildConfigurationList = E1EBDECB1769617500B39704 /* Build configuration list for PBXProject "MultiScreenExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E1EBDEC71769617500B39704;
+			productRefGroup = E1EBDED11769617600B39704 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E1EBDECF1769617500B39704 /* MultiScreenExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E1EBDECE1769617500B39704 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EBDEDE1769617600B39704 /* InfoPlist.strings in Resources */,
+				E1EBDEE61769617600B39704 /* Default.png in Resources */,
+				E1EBDEE81769617600B39704 /* Default@2x.png in Resources */,
+				E1EBDEEA1769617600B39704 /* Default-568h@2x.png in Resources */,
+				E1EBDEFD1769626500B39704 /* ScreenOneViewController.xib in Resources */,
+				E1EBDEFF1769626500B39704 /* ScreenTwoViewController.xib in Resources */,
+				E1EBDF011769673900B39704 /* MultiScreenViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E1EBDECC1769617500B39704 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1EBDEE01769617600B39704 /* main.m in Sources */,
+				E1EBDEE41769617600B39704 /* MultiScreenAppDelegate.m in Sources */,
+				E1EBDEED1769617600B39704 /* MultiScreenViewController.m in Sources */,
+				E1EBDEFC1769626500B39704 /* ScreenOneViewController.m in Sources */,
+				E1EBDEFE1769626500B39704 /* ScreenTwoViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E1EBDEDC1769617600B39704 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1EBDEDD1769617600B39704 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E1EBDEF11769617600B39704 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E1EBDEF21769617600B39704 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E1EBDEF41769617600B39704 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MultiScreenExample/MultiScreenExample-Prefix.pch";
+				INFOPLIST_FILE = "MultiScreenExample/MultiScreenExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E1EBDEF51769617600B39704 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MultiScreenExample/MultiScreenExample-Prefix.pch";
+				INFOPLIST_FILE = "MultiScreenExample/MultiScreenExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E1EBDECB1769617500B39704 /* Build configuration list for PBXProject "MultiScreenExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1EBDEF11769617600B39704 /* Debug */,
+				E1EBDEF21769617600B39704 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1EBDEF31769617600B39704 /* Build configuration list for PBXNativeTarget "MultiScreenExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1EBDEF41769617600B39704 /* Debug */,
+				E1EBDEF51769617600B39704 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E1EBDEC81769617500B39704 /* Project object */;
+}
