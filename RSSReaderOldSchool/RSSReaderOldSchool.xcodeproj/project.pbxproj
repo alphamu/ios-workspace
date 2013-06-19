@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E13F1387176FF5F50010DDE1 /* ic_action_star_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E13F1386176FF5F50010DDE1 /* ic_action_star_0.png */; };
+		E13F1389176FF61A0010DDE1 /* ic_action_star_10.png in Resources */ = {isa = PBXBuildFile; fileRef = E13F1388176FF61A0010DDE1 /* ic_action_star_10.png */; };
+		E13F138C176FF67E0010DDE1 /* ic_action_star_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13F138A176FF67E0010DDE1 /* ic_action_star_0@2x.png */; };
+		E13F138D176FF67E0010DDE1 /* ic_action_star_10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13F138B176FF67E0010DDE1 /* ic_action_star_10@2x.png */; };
 		E14FEF0D176A984500F50C85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14FEF0C176A984500F50C85 /* UIKit.framework */; };
 		E14FEF0F176A984500F50C85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14FEF0E176A984500F50C85 /* Foundation.framework */; };
 		E14FEF11176A984500F50C85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E14FEF10176A984500F50C85 /* CoreGraphics.framework */; };
@@ -23,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E13F1386176FF5F50010DDE1 /* ic_action_star_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_star_0.png; sourceTree = "<group>"; };
+		E13F1388176FF61A0010DDE1 /* ic_action_star_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_star_10.png; sourceTree = "<group>"; };
+		E13F138A176FF67E0010DDE1 /* ic_action_star_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_action_star_0@2x.png"; sourceTree = "<group>"; };
+		E13F138B176FF67E0010DDE1 /* ic_action_star_10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_action_star_10@2x.png"; sourceTree = "<group>"; };
 		E14FEF09176A984500F50C85 /* RSSReaderOldSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReaderOldSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14FEF0C176A984500F50C85 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E14FEF0E176A984500F50C85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +112,10 @@
 		E14FEF13176A984500F50C85 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E13F138A176FF67E0010DDE1 /* ic_action_star_0@2x.png */,
+				E13F138B176FF67E0010DDE1 /* ic_action_star_10@2x.png */,
+				E13F1388176FF61A0010DDE1 /* ic_action_star_10.png */,
+				E13F1386176FF5F50010DDE1 /* ic_action_star_0.png */,
 				E14FEF14176A984500F50C85 /* RSSReaderOldSchool-Info.plist */,
 				E14FEF15176A984500F50C85 /* InfoPlist.strings */,
 				E14FEF18176A984500F50C85 /* main.m */,
@@ -173,6 +185,10 @@
 				E14FEF23176A984500F50C85 /* Default-568h@2x.png in Resources */,
 				E14FEF29176A984500F50C85 /* APPViewController.xib in Resources */,
 				E14FEF33176AB55C00F50C85 /* APPDetailsViewController.xib in Resources */,
+				E13F1387176FF5F50010DDE1 /* ic_action_star_0.png in Resources */,
+				E13F1389176FF61A0010DDE1 /* ic_action_star_10.png in Resources */,
+				E13F138C176FF67E0010DDE1 /* ic_action_star_0@2x.png in Resources */,
+				E13F138D176FF67E0010DDE1 /* ic_action_star_10@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
