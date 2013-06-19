@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "Event.h"
 
 @interface RootViewController ()
 
@@ -28,6 +29,12 @@
     return self;
 }
 
+- (IBAction)clickedAlisButton:(id)sender {
+    
+    self.editing = !self.editing;
+    
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -45,6 +52,33 @@
     
     // Start the location manager.
     [[self locationManager] startUpdatingLocation];
+    
+    //create a new request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    //specify which entity to fetch from.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:managedObjectContext];
+    [request setEntity:entity];
+    
+    //create a sort descriptor
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO];
+    //add to sort descriptors
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    //set sort descriptors
+    [request setSortDescriptors:sortDescriptors];
+//    [sortDescriptors release]; //ARC not needed
+//    [sortDescriptor release]; //ARC not needed
+    
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (mutableFetchResults == nil) {
+        // Handle the error.
+    }
+    
+    [self setEventsArray:mutableFetchResults];
+//    [mutableFetchResults release]; //ARC not needed
+//    [request release]; //ARC not needed
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,22 +93,49 @@
 {
     NSLog(@"numberSections");
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return [eventsArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // A date formatter for the time stamp.
+    static NSDateFormatter *dateFormatter = nil;
+    if (dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    }
+    
+    // A number formatter for the latitude and longitude.
+    static NSNumberFormatter *numberFormatter = nil;
+    if (numberFormatter == nil) {
+        numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [numberFormatter setMaximumFractionDigits:3];
+    }
+    
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    // Dequeue or create a new cell.
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier]; //autorelease] not needed since we use ARC
+    }
     
-    // Configure the cell...
+    Event *event = (Event *)[eventsArray objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = [dateFormatter stringFromDate:[event creationDate]];
+    
+    NSString *string = [NSString stringWithFormat:@"%@, %@",
+                        [numberFormatter stringFromNumber:[event latitude]],
+                        [numberFormatter stringFromNumber:[event longitude]]];
+    cell.detailTextLabel.text = string;
     
     return cell;
 }
@@ -88,19 +149,33 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the managed object at the given index path.
+        NSManagedObject *eventToDelete = [eventsArray objectAtIndex:indexPath.row];
+        [managedObjectContext deleteObject:eventToDelete];
+        
+        // Update the array and table view.
+        [eventsArray removeObjectAtIndex:indexPath.row];
+        
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+        
+        // Commit the change.
+        NSError *error = nil;
+        if (![managedObjectContext save:&error]) {
+            // Handle the error.
+        }
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -152,6 +227,36 @@
     addButton.enabled = NO;
 }
 
+
+- (void)addEvent {
+    
+    //get the location
+    CLLocation *location = [locationManager location];
+    if (!location) {
+        return;
+    }
+    
+    //create a new event object
+    Event *event = (Event *)[NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:managedObjectContext];
+    
+    CLLocationCoordinate2D coordinate = [location coordinate];
+    [event setLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
+    [event setLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
+    [event setCreationDate:[NSDate date]];
+    
+    //save the changes
+    NSError *error = nil;
+    if (![managedObjectContext save:&error]) {
+        // Handle the error.
+    }
+    
+    //update the events array and the table view
+    [eventsArray insertObject:event atIndex:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                          withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
 
 - (void)viewDidUnload {
     self.eventsArray = nil;

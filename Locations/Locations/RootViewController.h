@@ -23,4 +23,6 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) UIBarButtonItem *addButton;
 
+-(void)addEvent;
+
 @end
