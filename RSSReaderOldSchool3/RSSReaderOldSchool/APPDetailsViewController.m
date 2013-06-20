@@ -7,6 +7,7 @@
 //
 
 #import "APPDetailsViewController.h"
+#import "APPViewController.h"
 #import "Favorite.h"
 
 @interface APPDetailsViewController () {
@@ -32,7 +33,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Details";
+    [self initEverything];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)  name:UIDeviceOrientationDidChangeNotification  object:nil];
+}
+
+-(void) orientationChanged:(NSNotification *)notification {
+    NSLog(@"orientationChanged");
+    [self initEverything];
+}
+
+- (void)initEverything {
+    
+    self.title = self.articleTitle;
     
     NSURL *myURL = [NSURL URLWithString: [self.url stringByAddingPercentEscapesUsingEncoding:
                                           NSUTF8StringEncoding]];
@@ -45,10 +61,29 @@
     favImageSelected = [UIImage imageNamed:@"ic_action_star_10.png"];
     
     btnFav = [[UIBarButtonItem alloc]
-                                initWithImage:favImage landscapeImagePhone:nil
-                                style:UIBarButtonItemStyleBordered
-                                target:self
-                                action:@selector(favoriteClicked:)];
+              initWithImage:favImage landscapeImagePhone:nil
+              style:UIBarButtonItemStyleBordered
+              target:self
+              action:@selector(favoriteClicked:)];
+    
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && orientation == UIInterfaceOrientationPortrait )
+    {
+        UIBarButtonItem *list = [[UIBarButtonItem alloc]
+                                 initWithTitle:@"Stories"
+                                 style:UIBarButtonItemStyleBordered
+                                 target:self
+                                 action:@selector(toolbarItemTapped:)];
+        
+        self.navigationItem.leftBarButtonItem = list;
+        
+    } else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+    
+    if(self.url == nil)
+        return;
     
     self.navigationItem.rightBarButtonItem = btnFav;
     
@@ -75,7 +110,6 @@
     
     //    [mutableFetchResults release]; //ARC not needed
     //    [request release]; //ARC not needed
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,6 +161,43 @@
     } else {
         NSLog(@"Something went wrong");
     }
+    
 }
+
+- (void)toolbarItemTapped:(id)sender
+{
+    if(self.popController.popoverVisible) {
+        [self.popController dismissPopoverAnimated:NO];
+        return;
+    } else {
+        if(self.popController == nil) {
+            APPViewController* content = [[APPViewController alloc] init];
+            UIPopoverController* aPopover = [[UIPopoverController alloc]
+                                             initWithContentViewController:content];
+            aPopover.delegate = self;
+            content.delegate = self;
+            
+            // Store the popover in a custom property for later use.
+            self.popController = aPopover;
+        }
+    }
+    
+    [self.popController presentPopoverFromBarButtonItem:sender
+                               permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+}
+-(void)selectedStory:(NSString *)articleTitle url:(NSString *)url
+{
+    NSLog(@"Story Selected");
+    if(![self.url isEqualToString:url]) {
+        [self setUrl:url];
+        [self setArticleTitle:articleTitle];
+        [self initEverything];
+    }
+    if(self.popController != nil && self.popController.popoverVisible) {
+        [self.popController dismissPopoverAnimated:YES];
+    }
+}
+
 
 @end

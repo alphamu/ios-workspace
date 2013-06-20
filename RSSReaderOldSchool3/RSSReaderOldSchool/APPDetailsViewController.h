@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APPStorySelectionDelegate.h"
 
-@interface APPDetailsViewController : UIViewController
+@interface APPDetailsViewController : UIViewController <UIPopoverControllerDelegate, APPStorySelectionDelegate>
 
 @property (weak, nonatomic) NSString *url;
 @property (weak, nonatomic) NSString *articleTitle;
@@ -16,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
+@property (strong, nonatomic) UIPopoverController *popController;
 
 @end

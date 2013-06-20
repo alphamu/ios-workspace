@@ -51,6 +51,7 @@
 		E14FEF2F176AB55C00F50C85 /* APPDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPDetailsViewController.h; sourceTree = "<group>"; };
 		E14FEF30176AB55C00F50C85 /* APPDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPDetailsViewController.m; sourceTree = "<group>"; };
 		E14FEF31176AB55C00F50C85 /* APPDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPDetailsViewController.xib; sourceTree = "<group>"; };
+		E16466EE1772CFC500F71617 /* APPStorySelectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APPStorySelectionDelegate.h; sourceTree = "<group>"; };
 		E1B4A4CC1771978800B9D5C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E1B4A4CF1771995D00B9D5C9 /* Favorite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorite.xcdatamodel; sourceTree = "<group>"; };
 		E1B4A4D117719B2900B9D5C9 /* Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorite.h; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 				E1B4A4CE1771995D00B9D5C9 /* Favorite.xcdatamodeld */,
 				E1B4A4D117719B2900B9D5C9 /* Favorite.h */,
 				E1B4A4D217719B2900B9D5C9 /* Favorite.m */,
+				E16466EE1772CFC500F71617 /* APPStorySelectionDelegate.h */,
 				E14FEF13176A984500F50C85 /* Supporting Files */,
 			);
 			path = RSSReaderOldSchool;
@@ -292,7 +294,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSReaderOldSchool/RSSReaderOldSchool-Prefix.pch";
 				INFOPLIST_FILE = "RSSReaderOldSchool/RSSReaderOldSchool-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -303,7 +307,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSReaderOldSchool/RSSReaderOldSchool-Prefix.pch";
 				INFOPLIST_FILE = "RSSReaderOldSchool/RSSReaderOldSchool-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

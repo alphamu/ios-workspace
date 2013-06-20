@@ -8,6 +8,7 @@
 
 #import "APPAppDelegate.h"
 #import "APPViewController.h"
+#import "APPDetailsViewController.h"
 
 @implementation APPAppDelegate
 
@@ -20,18 +21,41 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    APPViewController *main = [[APPViewController alloc] initWithStyle:UITableViewStylePlain];
+    APPViewController *stories = [[APPViewController alloc] initWithStyle:UITableViewStylePlain];
     
     NSManagedObjectContext *context = [self managedObjectContext];
     if (!context) {
         // Handle the error.
     }
-    // Pass the managed object context to the view controller.
-    main.managedObjectContext = context;
     
-    self.navController = [[UINavigationController alloc] initWithRootViewController:main];
-    self.window.rootViewController = self.navController;
+    // Pass the managed object context to the view controller.
+    stories.managedObjectContext = context;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        APPDetailsViewController *details = [[APPDetailsViewController alloc] initWithNibName:@"APPDetailsViewController" bundle:nil];
+        details.managedObjectContext = context;
+        
+        stories.delegate = details;
+        
+        self.navController = [[UINavigationController alloc] initWithRootViewController:stories];
+        self.navRightController = [[UINavigationController alloc] initWithRootViewController:details];
+        
+        UISplitViewController* splitVC = [[UISplitViewController alloc] init];
+        splitVC.viewControllers = [NSArray arrayWithObjects:self.navController, self.navRightController, nil];
+
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.window.rootViewController = splitVC;
+    }
+    else
+    {
+        self.navController = [[UINavigationController alloc] initWithRootViewController:stories];
+    
+        self.window.rootViewController = self.navController;
+    }
+    
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -156,6 +180,5 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-
 
 @end

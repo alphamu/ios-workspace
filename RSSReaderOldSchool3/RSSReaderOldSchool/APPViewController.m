@@ -8,6 +8,8 @@
 
 #import "APPViewController.h"
 #import "APPDetailsViewController.h"
+#import "APPStorySelectionDelegate.h"
+
 @interface NSString (JRStringAdditions)
 
 - (BOOL)containsString:(NSString *)string;
@@ -84,6 +86,12 @@
     searchController.searchResultsDataSource = self;
     searchController.searchResultsDelegate = self;
     [searchController setActive:NO animated:NO];
+    
+    if([feeds count] > 0 && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self tableView:self.tableView didSelectRowAtIndexPath:scrollIndexPath];
+//        [self.tableView selectRowAtIndexPath:scrollIndexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -100,12 +108,11 @@
     if(tableView == self.searchDisplayController.searchResultsTableView){
         return [displayFeeds count];
     }
-    return 3;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     if(cell == nil) {
@@ -164,11 +171,11 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSString *url;
     NSString *text;
     
@@ -180,11 +187,18 @@
         url = [feeds[indexPath.row] objectForKey: @"link"];
         text = [feeds[indexPath.row] objectForKey: @"title"];
     }
-    APPDetailsViewController *details = [[APPDetailsViewController alloc] initWithNibName:@"APPDetailsViewController" bundle:nil];
-    details.managedObjectContext = _managedObjectContext;
-    [details setUrl:url];
-    [details setArticleTitle:text];
-    [self.navigationController pushViewController:details animated:YES];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if(self.delegate) {
+            [self.delegate selectedStory:text url:url];
+        }
+    } else {
+        APPDetailsViewController *details = [[APPDetailsViewController alloc] initWithNibName:@"APPDetailsViewController" bundle:nil];
+        details.managedObjectContext = _managedObjectContext;
+        [details setUrl:url];
+        [details setArticleTitle:text];
+        [self.navigationController pushViewController:details animated:YES];
+    }
 }
 
 -(IBAction)findClicked:(id)sender

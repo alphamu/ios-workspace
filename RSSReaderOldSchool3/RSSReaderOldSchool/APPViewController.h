@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APPStorySelectionDelegate.h"
 
 @interface APPViewController : UITableViewController <NSXMLParserDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic, assign) id<APPStorySelectionDelegate> delegate;
 
 @end
