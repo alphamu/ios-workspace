@@ -11,5 +11,6 @@
 @interface APPViewController : UITableViewController <NSXMLParserDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

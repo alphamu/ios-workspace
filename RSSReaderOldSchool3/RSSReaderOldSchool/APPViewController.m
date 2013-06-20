@@ -170,14 +170,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *url;
+    NSString *text;
+    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         url = [displayFeeds[indexPath.row] objectForKey: @"link"];
+        text = [displayFeeds[indexPath.row] objectForKey: @"title"];
     }
     else {
         url = [feeds[indexPath.row] objectForKey: @"link"];
+        text = [feeds[indexPath.row] objectForKey: @"title"];
     }
     APPDetailsViewController *details = [[APPDetailsViewController alloc] initWithNibName:@"APPDetailsViewController" bundle:nil];
+    details.managedObjectContext = _managedObjectContext;
     [details setUrl:url];
+    [details setArticleTitle:text];
     [self.navigationController pushViewController:details animated:YES];
 }
 

@@ -7,11 +7,13 @@
 //
 
 #import "APPDetailsViewController.h"
+#import "Favorite.h"
 
 @interface APPDetailsViewController () {
     UIBarButtonItem *btnFav;
     UIImage *favImage;
     UIImage *favImageSelected;
+    Favorite *favorite;
 }
 - (IBAction)favoriteClicked:(id)sender;
 @end
@@ -34,8 +36,8 @@
     
     NSURL *myURL = [NSURL URLWithString: [self.url stringByAddingPercentEscapesUsingEncoding:
                                           NSUTF8StringEncoding]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
-    [self.webView loadRequest:request];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:myURL];
+    [self.webView loadRequest:urlRequest];
     
     //add favorite in nav bar
     
@@ -49,6 +51,31 @@
                                 action:@selector(favoriteClicked:)];
     
     self.navigationItem.rightBarButtonItem = btnFav;
+    
+    //create a new request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    //specify which entity to fetch from.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favorite" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    request.predicate = [NSPredicate predicateWithFormat:@"title LIKE %@", self.articleTitle];
+    NSLog(@"request = %@", request);
+    
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    //favorite = [[self.managedObjectContext executeFetchRequest:request error:&error] objectAtIndex:0]; //possible implementation
+    NSLog(@"array count %d", mutableFetchResults.count);
+    
+    if (mutableFetchResults == nil) {
+        // Handle the error.
+    } else if([mutableFetchResults count] > 0) {
+        favorite = [mutableFetchResults objectAtIndex:0];
+        btnFav.image = favImageSelected;
+    }
+    
+    //    [mutableFetchResults release]; //ARC not needed
+    //    [request release]; //ARC not needed
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,11 +90,39 @@
         NSLog(@"Fav");
         if(btnFav.image == favImage) {
             NSLog(@"Favorte Image");
-            btnFav.image = favImageSelected;
+            
+            //create a new event object
+            favorite = (Favorite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favorite" inManagedObjectContext:self.managedObjectContext];
+            [favorite setTitle:self.articleTitle];
+            [favorite setUrl:self.url];
+            
+            //save the changes
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                // Handle the error.
+                
+            } else {
+                //change the star to filled star
+                btnFav.image = favImageSelected;
+            }
         }
         else if(btnFav.image == favImageSelected) {
             NSLog(@"Favorte Image Selected");
             btnFav.image = favImage;
+            if(favorite != nil) {
+                //delete
+                [self.managedObjectContext deleteObject:favorite];
+                
+                // Commit the change.
+                NSError *error = nil;
+                if (![self.managedObjectContext save:&error]) {
+                    // Handle the error.
+                } else {
+                    btnFav.image = favImage;
+                }
+            } else {
+                btnFav.image = favImage;
+            }
         }
     } else {
         NSLog(@"Something went wrong");

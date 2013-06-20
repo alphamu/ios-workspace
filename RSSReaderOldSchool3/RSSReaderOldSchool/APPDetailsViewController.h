@@ -11,6 +11,10 @@
 @interface APPDetailsViewController : UIViewController
 
 @property (weak, nonatomic) NSString *url;
+@property (weak, nonatomic) NSString *articleTitle;
+
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
