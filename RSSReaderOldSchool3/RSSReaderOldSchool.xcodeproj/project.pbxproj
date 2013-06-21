@@ -23,6 +23,8 @@
 		E14FEF26176A984500F50C85 /* APPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E14FEF25176A984500F50C85 /* APPViewController.m */; };
 		E14FEF32176AB55C00F50C85 /* APPDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E14FEF30176AB55C00F50C85 /* APPDetailsViewController.m */; };
 		E14FEF33176AB55C00F50C85 /* APPDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E14FEF31176AB55C00F50C85 /* APPDetailsViewController.xib */; };
+		E159F1271773D8DE00BD698B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E159F1261773D8DE00BD698B /* Reachability.m */; };
+		E159F1291773DA3300BD698B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E159F1281773DA3300BD698B /* SystemConfiguration.framework */; };
 		E1B4A4CD1771978800B9D5C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B4A4CC1771978800B9D5C9 /* CoreData.framework */; };
 		E1B4A4D01771995D00B9D5C9 /* Favorite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B4A4CE1771995D00B9D5C9 /* Favorite.xcdatamodeld */; };
 		E1B4A4D317719B2900B9D5C9 /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B4A4D217719B2900B9D5C9 /* Favorite.m */; };
@@ -51,6 +53,9 @@
 		E14FEF2F176AB55C00F50C85 /* APPDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPDetailsViewController.h; sourceTree = "<group>"; };
 		E14FEF30176AB55C00F50C85 /* APPDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPDetailsViewController.m; sourceTree = "<group>"; };
 		E14FEF31176AB55C00F50C85 /* APPDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPDetailsViewController.xib; sourceTree = "<group>"; };
+		E159F1251773D8DE00BD698B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Reachability.h; sourceTree = "<group>"; };
+		E159F1261773D8DE00BD698B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Reachability.m; sourceTree = "<group>"; };
+		E159F1281773DA3300BD698B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E16466EE1772CFC500F71617 /* APPStorySelectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APPStorySelectionDelegate.h; sourceTree = "<group>"; };
 		E1B4A4CC1771978800B9D5C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E1B4A4CF1771995D00B9D5C9 /* Favorite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorite.xcdatamodel; sourceTree = "<group>"; };
@@ -63,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E159F1291773DA3300BD698B /* SystemConfiguration.framework in Frameworks */,
 				E1B4A4CD1771978800B9D5C9 /* CoreData.framework in Frameworks */,
 				E14FEF0D176A984500F50C85 /* UIKit.framework in Frameworks */,
 				E14FEF0F176A984500F50C85 /* Foundation.framework in Frameworks */,
@@ -76,6 +82,7 @@
 		E14FEF00176A984500F50C85 = {
 			isa = PBXGroup;
 			children = (
+				E159F1281773DA3300BD698B /* SystemConfiguration.framework */,
 				E14FEF12176A984500F50C85 /* RSSReaderOldSchool */,
 				E14FEF0B176A984500F50C85 /* Frameworks */,
 				E14FEF0A176A984500F50C85 /* Products */,
@@ -104,6 +111,8 @@
 		E14FEF12176A984500F50C85 /* RSSReaderOldSchool */ = {
 			isa = PBXGroup;
 			children = (
+				E159F1251773D8DE00BD698B /* Reachability.h */,
+				E159F1261773D8DE00BD698B /* Reachability.m */,
 				E14FEF1B176A984500F50C85 /* APPAppDelegate.h */,
 				E14FEF1C176A984500F50C85 /* APPAppDelegate.m */,
 				E14FEF24176A984500F50C85 /* APPViewController.h */,
@@ -215,6 +224,7 @@
 				E14FEF32176AB55C00F50C85 /* APPDetailsViewController.m in Sources */,
 				E1B4A4D01771995D00B9D5C9 /* Favorite.xcdatamodeld in Sources */,
 				E1B4A4D317719B2900B9D5C9 /* Favorite.m in Sources */,
+				E159F1271773D8DE00BD698B /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

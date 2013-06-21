@@ -16,4 +16,5 @@
 
 @property (nonatomic, assign) id<APPStorySelectionDelegate> delegate;
 
+-(void) initEverything;
 @end

@@ -9,6 +9,7 @@
 #import "APPViewController.h"
 #import "APPDetailsViewController.h"
 #import "APPStorySelectionDelegate.h"
+#import "Reachability.h"
 
 @interface NSString (JRStringAdditions)
 
@@ -45,6 +46,8 @@
     UISearchBar *searchBar;
     UISearchDisplayController *searchController;
     
+    Reachability *internetReachableFoo;
+    
 }
 
 -(IBAction)findClicked:(id)sender;
@@ -58,7 +61,46 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && orientation != UIInterfaceOrientationPortrait) {
+        [self testInternetConnection];
+    } else {
+        [self initEverything];
+    }
+}
+
+-(void) initEverything
+{
     self.title = @"Stories";
+    
+    //loading indicator
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
+                                   initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [activityIndicator startAnimating];
+    
+    CGRect acFrame = activityIndicator.frame;
+    acFrame.origin.x = 10;
+    acFrame.origin.y = 10;
+    activityIndicator.frame = acFrame;
+    
+    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, 25);
+    CGRect loadingFrame = CGRectMake(0, 0, self.view.bounds.size.width, 25);
+    loadingFrame.origin.x = 10 + activityIndicator.bounds.size.width + 10;
+    loadingFrame.origin.y = 8;
+    UILabel *loading = [[UILabel alloc] initWithFrame:loadingFrame];
+    UIColor *gray = [UIColor grayColor];
+    [loading setTextColor:gray];
+    loading.text = @"Loading...";
+    
+    //put the activity indicator and loading label in a view
+    UIView *view = [[UIView alloc] initWithFrame:frame];
+    
+    [view addSubview:activityIndicator];
+    [view addSubview:loading];
+
+    self.tableView.tableHeaderView = view;
+
+    
 	// Do any additional setup after loading the view, typically from a nib.
     feeds = [[NSMutableArray alloc] init];
     NSURL *url = [NSURL URLWithString:@"http://images.apple.com/main/rss/hotnews/hotnews.rss"];
@@ -66,6 +108,11 @@
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
     [parser parse];
+    
+    //remove loading indicator
+    [activityIndicator stopAnimating];
+    self.tableView.tableHeaderView = nil;
+    
     
     displayFeeds = [[NSMutableArray alloc] initWithArray:feeds];
     
@@ -90,8 +137,9 @@
     if([feeds count] > 0 && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self tableView:self.tableView didSelectRowAtIndexPath:scrollIndexPath];
-//        [self.tableView selectRowAtIndexPath:scrollIndexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+        //        [self.tableView selectRowAtIndexPath:scrollIndexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
     }
+    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -236,6 +284,37 @@
 {
     NSLog(@"willEndSearch");
     self.tableView.tableHeaderView = nil;
+}
+
+// Checks if we have an internet connection or not
+- (void)testInternetConnection
+{
+    internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    APPViewController *this = self;
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [this initEverything];
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"List: No network connection"
+                                                            message:@"You must be connected to the internet to use this app."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        });
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 

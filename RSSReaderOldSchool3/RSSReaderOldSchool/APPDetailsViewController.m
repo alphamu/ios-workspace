@@ -9,12 +9,15 @@
 #import "APPDetailsViewController.h"
 #import "APPViewController.h"
 #import "Favorite.h"
+#import "Reachability.h"
 
 @interface APPDetailsViewController () {
     UIBarButtonItem *btnFav;
     UIImage *favImage;
     UIImage *favImageSelected;
     Favorite *favorite;
+    
+    Reachability *internetReachableFoo;
 }
 - (IBAction)favoriteClicked:(id)sender;
 @end
@@ -33,7 +36,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initEverything];
+//    [self initEverything];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && orientation == UIInterfaceOrientationPortrait ) {
+        [self testInternetConnection];
+    } else {
+        [self initEverything];
+    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -43,14 +53,16 @@
 
 -(void) orientationChanged:(NSNotification *)notification {
     NSLog(@"orientationChanged");
-    [self initEverything];
+    
+        [self initEverything];
+
 }
 
 - (void)initEverything {
     
     self.title = self.articleTitle;
     
-    NSURL *myURL = [NSURL URLWithString: [self.url stringByAddingPercentEscapesUsingEncoding:
+    NSURL *myURL = [NSURL URLWithString: [[self.url stringByReplacingOccurrencesOfString:@" " withString:@""] stringByAddingPercentEscapesUsingEncoding:
                                           NSUTF8StringEncoding]];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:myURL];
     [self.webView loadRequest:urlRequest];
@@ -197,6 +209,42 @@
     if(self.popController != nil && self.popController.popoverVisible) {
         [self.popController dismissPopoverAnimated:YES];
     }
+}
+
+// Checks if we have an internet connection or not
+- (void)testInternetConnection
+{
+    internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    APPDetailsViewController *this = self;
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+            if(this.url == nil) {
+                this.title = @"<-- Click \"Stories\" to continue";
+                [this.webView loadHTMLString:@"<center>Click the \"Stories\" button in the top left corner to continue.</center>" baseURL:nil];
+            }
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Someone broke the internet :(");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                            message:@"You must be connected to the internet to use this app."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+                        [alert show];
+        });
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 
