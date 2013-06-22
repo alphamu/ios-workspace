@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "APPStorySelectionDelegate.h"
+#import "APPViewController.h"
 
 @interface APPDetailsViewController : UIViewController <UIPopoverControllerDelegate, APPStorySelectionDelegate>
 
@@ -19,5 +20,7 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (strong, nonatomic) UIPopoverController *popController;
+
+@property (nonatomic, assign) UINavigationController *stories;
 
 @end

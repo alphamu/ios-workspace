@@ -54,7 +54,13 @@
 -(void) orientationChanged:(NSNotification *)notification {
     NSLog(@"orientationChanged");
     
-        [self initEverything];
+    [self initEverything];
+
+    if(self.popController != nil && [self.popController isPopoverVisible]) {
+        [self.popController dismissPopoverAnimated:YES];
+        self.popController = nil;
+    }
+        
 
 }
 
@@ -183,11 +189,10 @@
         return;
     } else {
         if(self.popController == nil) {
-            APPViewController* content = [[APPViewController alloc] init];
             UIPopoverController* aPopover = [[UIPopoverController alloc]
-                                             initWithContentViewController:content];
+                                             initWithContentViewController:self.stories];
             aPopover.delegate = self;
-            content.delegate = self;
+            
             
             // Store the popover in a custom property for later use.
             self.popController = aPopover;
@@ -240,7 +245,7 @@
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
-                        [alert show];
+            [alert show];
         });
     };
     

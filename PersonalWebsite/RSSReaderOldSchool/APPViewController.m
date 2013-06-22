@@ -52,6 +52,8 @@
     NSMutableArray *sectionsCount;
     int tempCount;
     
+    UIActivityIndicatorView *activityIndicator;
+    
 }
 
 -(IBAction)findClicked:(id)sender;
@@ -70,21 +72,11 @@
                  @"http://alimuzaffar.com/index.php/health-a-fitness?format=feed&type=rss"];
     sectionsCount = [@[[NSNumber numberWithInt:0], [NSNumber numberWithInt:0],[NSNumber numberWithInt:0]] mutableCopy];
     
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && orientation != UIInterfaceOrientationPortrait) {
-        [self testInternetConnection];
-    } else {
-        [self initEverything];
-    }
-}
-
--(void) initEverything
-{
     self.title = @"Stories";
     
     //loading indicator
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
-                                   initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator = [[UIActivityIndicatorView alloc]
+                         initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [activityIndicator startAnimating];
     
     CGRect acFrame = activityIndicator.frame;
@@ -92,7 +84,8 @@
     acFrame.origin.y = 10;
     activityIndicator.frame = acFrame;
     
-    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, 25);
+    //    CGRectInset(rect, dx, dy)
+    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, 35);
     CGRect loadingFrame = CGRectMake(0, 0, self.view.bounds.size.width, 25);
     loadingFrame.origin.x = 10 + activityIndicator.bounds.size.width + 10;
     loadingFrame.origin.y = 8;
@@ -106,28 +99,24 @@
     
     [view addSubview:activityIndicator];
     [view addSubview:loading];
-
+    
     self.tableView.tableHeaderView = view;
-
     
-	// Do any additional setup after loading the view, typically from a nib.
-    feeds = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < [sections count]; i++) {
-        tempCount = 0;
-        NSURL *url = [NSURL URLWithString:[sections objectAtIndex:i]];
-        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-        [parser setDelegate:self];
-        [parser setShouldResolveExternalEntities:NO];
-        [parser parse];
-        [sectionsCount replaceObjectAtIndex:i withObject:[NSNumber numberWithInt:tempCount]];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && orientation != UIInterfaceOrientationPortrait) {
+        [self testInternetConnection];
+    } else {
+        [self getNetworkDataOnBackground];
     }
+}
+
+-(void) initEverything:(NSMutableArray *) array {
     
-    //remove loading indicator
-    [activityIndicator stopAnimating];
-    self.tableView.tableHeaderView = nil;
-    
-    
+}
+
+-(void) initEverything
+{
+
     displayFeeds = [[NSMutableArray alloc] initWithArray:feeds];
     
     UIBarButtonItem *btnFind = [[UIBarButtonItem alloc]
@@ -325,6 +314,37 @@
     self.tableView.tableHeaderView = nil;
 }
 
+- (void) getNetworkDataOnBackground
+{
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //fetch
+        APPViewController *this = self;
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        feeds = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < [sections count]; i++) {
+            tempCount = 0;
+            NSURL *url = [NSURL URLWithString:[sections objectAtIndex:i]];
+            parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+            [parser setDelegate:self];
+            [parser setShouldResolveExternalEntities:NO];
+            [parser parse];
+            [sectionsCount replaceObjectAtIndex:i withObject:[NSNumber numberWithInt:tempCount]];
+        }
+        
+        //remove loading indicator
+        [activityIndicator stopAnimating];
+        self.tableView.tableHeaderView = nil;
+        NSLog(@"Done fetching");
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [this initEverything];
+        });
+    });
+}
 // Checks if we have an internet connection or not
 - (void)testInternetConnection
 {
@@ -335,7 +355,7 @@
     {
         // Update the UI on the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            [this initEverything];
+            [this getNetworkDataOnBackground];
         });
     };
     

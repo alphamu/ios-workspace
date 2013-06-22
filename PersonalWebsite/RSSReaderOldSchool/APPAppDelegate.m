@@ -41,6 +41,8 @@
         self.navController = [[UINavigationController alloc] initWithRootViewController:stories];
         self.navRightController = [[UINavigationController alloc] initWithRootViewController:details];
         
+        details.stories = self.navController;
+        
         UISplitViewController* splitVC = [[UISplitViewController alloc] init];
         splitVC.viewControllers = [NSArray arrayWithObjects:self.navController, self.navRightController, nil];
 
