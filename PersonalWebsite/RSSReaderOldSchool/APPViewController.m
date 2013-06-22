@@ -42,6 +42,7 @@
     NSMutableDictionary *item;
     NSMutableString *title;
     NSMutableString *link;
+    NSMutableString *description;
     NSString *element;
     UISearchBar *searchBar;
     UISearchDisplayController *searchController;
@@ -217,6 +218,7 @@
         item    = [[NSMutableDictionary alloc] init];
         title   = [[NSMutableString alloc] init];
         link    = [[NSMutableString alloc] init];
+        description = [[NSMutableString alloc] init];
         
     }
     
@@ -228,6 +230,8 @@
         [title appendString:string];
     } else if ([element isEqualToString:@"link"]) {
         [link appendString:string];
+    } else if ([element isEqualToString:@"description"]) {
+        [description appendString:string];
     }
     
 }
@@ -238,6 +242,7 @@
         
         [item setObject:title forKey:@"title"];
         [item setObject:link forKey:@"link"];
+        [item setObject:description forKey:@"description"];
         
         [feeds addObject:[item copy]];
         tempCount = tempCount + 1;
@@ -254,25 +259,35 @@
     
     NSString *url;
     NSString *text;
+    NSString *desc;
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         url = [displayFeeds[indexPath.row] objectForKey: @"link"];
         text = [displayFeeds[indexPath.row] objectForKey: @"title"];
+        desc = [displayFeeds[indexPath.row] objectForKey: @"description"];
     }
     else {
-        url = [feeds[indexPath.row] objectForKey: @"link"];
-        text = [feeds[indexPath.row] objectForKey: @"title"];
+        NSNumber *c = [sectionsCount objectAtIndex:indexPath.section];
+        int rowNumber = (indexPath.row + (indexPath.section * [c integerValue]));
+        if(indexPath.section == 1)
+            rowNumber += 1;
+        else if(indexPath.section > 1)
+            rowNumber -=1;
+        url = [feeds[rowNumber] objectForKey: @"link"];
+        text = [feeds[rowNumber] objectForKey: @"title"];
+        desc = [feeds[rowNumber] objectForKey: @"description"];
     }
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if(self.delegate) {
-            [self.delegate selectedStory:text url:url];
+            [self.delegate selectedStory:text url:url description:desc];
         }
     } else {
         APPDetailsViewController *details = [[APPDetailsViewController alloc] initWithNibName:@"APPDetailsViewController" bundle:nil];
         details.managedObjectContext = _managedObjectContext;
         [details setUrl:url];
         [details setArticleTitle:text];
+        [details setDescription:desc];
         [self.navigationController pushViewController:details animated:YES];
     }
 }
@@ -375,7 +390,6 @@
     
     [internetReachableFoo startNotifier];
 }
-
 
 - (void)didReceiveMemoryWarning
 {

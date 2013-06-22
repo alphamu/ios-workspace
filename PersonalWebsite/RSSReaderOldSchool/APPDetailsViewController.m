@@ -68,11 +68,13 @@
     
     self.title = self.articleTitle;
     
-    NSURL *myURL = [NSURL URLWithString: [[self.url stringByReplacingOccurrencesOfString:@" " withString:@""] stringByAddingPercentEscapesUsingEncoding:
-                                          NSUTF8StringEncoding]];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:myURL];
-    [self.webView loadRequest:urlRequest];
+    //NSURL *myURL = [NSURL URLWithString: [[self.url stringByReplacingOccurrencesOfString:@" " withString:@""] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    //NSURLRequest *urlRequest = [NSURLRequest requestWithURL:myURL];
+    //[self.webView loadRequest:urlRequest];
     
+    //[self.webView loadHTMLString:self.description baseURL:[NSURL URLWithString:@"http://alimuzaffar.com"]];
+    [self.webView loadHTMLString:self.description baseURL:nil];
+    //NSLog(self.description);
     //add favorite in nav bar
     
     favImage = [UIImage imageNamed:@"ic_action_star_0.png"];
@@ -203,12 +205,13 @@
                                permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 
 }
--(void)selectedStory:(NSString *)articleTitle url:(NSString *)url
+-(void)selectedStory:(NSString *)articleTitle url:(NSString *)url description:(NSString *)description
 {
     NSLog(@"Story Selected");
     if(![self.url isEqualToString:url]) {
         [self setUrl:url];
         [self setArticleTitle:articleTitle];
+        [self setDescription:description];
         [self initEverything];
     }
     if(self.popController != nil && self.popController.popoverVisible) {
@@ -251,6 +254,5 @@
     
     [internetReachableFoo startNotifier];
 }
-
 
 @end

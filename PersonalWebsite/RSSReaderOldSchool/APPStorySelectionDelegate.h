@@ -11,6 +11,6 @@
 @class APPAppDelegate;
 @protocol APPStorySelectionDelegate <NSObject>
 @required
--(void)selectedStory:(NSString *)articleTitle url:(NSString *)url;
+-(void)selectedStory:(NSString *)articleTitle url:(NSString *)url description:(NSString *)description;
 
 @end

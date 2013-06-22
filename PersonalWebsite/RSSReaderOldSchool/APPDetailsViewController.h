@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) NSString *url;
 @property (weak, nonatomic) NSString *articleTitle;
+@property (weak, nonatomic) NSString *description;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
