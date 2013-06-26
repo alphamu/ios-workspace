@@ -10,6 +10,8 @@
 #import "APPDetailsViewController.h"
 #import "APPStorySelectionDelegate.h"
 #import "Reachability.h"
+#import "CustomCellBackground.h"
+#import "CustomHeader.h"
 
 @interface NSString (JRStringAdditions)
 
@@ -68,6 +70,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.rowHeight = self.tableView.rowHeight + 6;
+    
     sections = @[@"http://alimuzaffar.com/index.php/development-work?format=feed&type=rss",
                  @"http://alimuzaffar.com/index.php/blog?format=feed&type=rss",
                  @"http://alimuzaffar.com/index.php/health-a-fitness?format=feed&type=rss"];
@@ -92,6 +97,7 @@
     loadingFrame.origin.y = 8;
     UILabel *loading = [[UILabel alloc] initWithFrame:loadingFrame];
     UIColor *gray = [UIColor grayColor];
+    [loading setBackgroundColor:[UIColor clearColor]];
     [loading setTextColor:gray];
     loading.text = @"Loading...";
     
@@ -111,13 +117,9 @@
     }
 }
 
--(void) initEverything:(NSMutableArray *) array {
-    
-}
-
 -(void) initEverything
 {
-
+    
     displayFeeds = [[NSMutableArray alloc] initWithArray:feeds];
     
     UIBarButtonItem *btnFind = [[UIBarButtonItem alloc]
@@ -181,6 +183,32 @@
     return nil;
 }
 
+// Add new methods
+-(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    CustomHeader * header = [[CustomHeader alloc] init];
+    header.titleLabel.text = [self tableView: tableView titleForHeaderInSection:section];
+    
+    // START NEW
+    if (section%2 == 1) {
+        header.lightColor = [UIColor colorWithRed:147.0/255.0 green:105.0/255.0 blue:216.0/255.0 alpha:1.0];
+        header.darkColor = [UIColor colorWithRed:72.0/255.0 green:22.0/255.0 blue:137.0/255.0 alpha:1.0];
+    }
+    // END NEW
+    return header;
+}
+
+-(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionTitle = [self tableView: tableView titleForHeaderInSection:section];
+    if(sectionTitle == nil) {
+        return 0;
+    }
+    return 50;
+}
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
@@ -189,8 +217,21 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [[cell detailTextLabel] setLineBreakMode:UILineBreakModeTailTruncation];
+        
+        // START NEW
+        if (![cell.backgroundView isKindOfClass:[CustomCellBackground class]]) {
+            cell.backgroundView = [[CustomCellBackground alloc] init];
+        }
+        
+        if (![cell.selectedBackgroundView isKindOfClass:[CustomCellBackground class]]) {
+            cell.selectedBackgroundView = [[CustomCellBackground alloc] init];
+        }
+        
+        cell.textLabel.backgroundColor = [UIColor clearColor]; // NEW
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor]; // NEW
+        // END NEW
     }
-
+    
     NSString *text;
     NSString *details;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -206,7 +247,7 @@
         text = [[feeds objectAtIndex:rowNumber] objectForKey:@"title"];
         details = [[feeds objectAtIndex:rowNumber] objectForKey: @"description"];
     }
-
+    
     [cell.textLabel setText:text];
     NSRange r;
     NSString *s = [details copy];
@@ -341,7 +382,7 @@
 
 - (void) getNetworkDataOnBackground
 {
-
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         //fetch
         APPViewController *this = self;

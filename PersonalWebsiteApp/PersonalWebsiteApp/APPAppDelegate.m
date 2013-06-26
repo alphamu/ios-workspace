@@ -21,7 +21,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    APPViewController *stories = [[APPViewController alloc] initWithStyle:UITableViewStylePlain];
+    APPViewController *stories = [[APPViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
     NSManagedObjectContext *context = [self managedObjectContext];
     if (!context) {
