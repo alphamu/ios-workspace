@@ -186,13 +186,16 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [[cell detailTextLabel] setLineBreakMode:UILineBreakModeTailTruncation];
     }
 
     NSString *text;
+    NSString *details;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         text = [[displayFeeds objectAtIndex:indexPath.row] objectForKey: @"title"];
+        details = [[displayFeeds objectAtIndex:indexPath.row] objectForKey: @"description"];
     } else {
         NSNumber *c = [sectionsCount objectAtIndex:indexPath.section];
         int rowNumber = (indexPath.row + (indexPath.section * [c integerValue]));
@@ -201,9 +204,16 @@
         else if(indexPath.section > 1)
             rowNumber -=1;
         text = [[feeds objectAtIndex:rowNumber] objectForKey:@"title"];
+        details = [[feeds objectAtIndex:rowNumber] objectForKey: @"description"];
     }
 
     [cell.textLabel setText:text];
+    NSRange r;
+    NSString *s = [details copy];
+    while ((r = [s rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+        s = [s stringByReplacingCharactersInRange:r withString:@""];
+    
+    [cell.detailTextLabel setText:s];
     
     return cell;
     
