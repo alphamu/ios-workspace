@@ -343,10 +343,11 @@
     }
 }
 
--(IBAction)findClicked:(id)sender
+-(void)findClicked:(id)sender
 {
     NSLog(@"findClicked");
     if(searchBar.superview == nil) {
+        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
         self.tableView.tableHeaderView = searchBar;
         [searchController setActive:YES animated:YES];
         [searchBar becomeFirstResponder];
