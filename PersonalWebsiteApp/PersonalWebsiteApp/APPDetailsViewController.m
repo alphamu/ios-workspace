@@ -43,7 +43,7 @@
     template = @"<html><head>\
     </head>\
     <style>\
-    body { font-family: Verdana, Gill Sans, Arial; font-size: .9em; margin: 1em; background: url('grey.png'); } \
+    body { font-family: Verdana, Gill Sans, Arial; font-size: .9em; margin: 1em; background: url('subtle_stripes.png'); } \
     a { color:#FFFF00; text-decoration: none; }\
     div { background: url(graybg.png); color: #fff; padding: 10px; border-radius: 10px; -moz-border-radius: 10px overflow; word-wrap:break-word; } \
     </style>\
