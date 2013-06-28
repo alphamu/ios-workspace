@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UICustomNavigationController.h"
 
 @class APPViewController;
 

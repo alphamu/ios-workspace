@@ -38,8 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Available fonts: %@", [UIFont familyNames]);
-//    [self initEverything];
+//    NSLog(@"Available fonts: %@", [UIFont familyNames]);
     
     template = @"<html><head>\
     </head>\
@@ -52,8 +51,6 @@
     %@\
     </div></body>\
     </html>";
-    
-    NSLog(@"%@",template);
     
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && orientation == UIInterfaceOrientationPortrait ) {

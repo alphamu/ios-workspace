@@ -9,6 +9,7 @@
 #import "APPAppDelegate.h"
 #import "APPViewController.h"
 #import "APPDetailsViewController.h"
+#import "UICustomNavigationController.h"
 
 @implementation APPAppDelegate
 
@@ -38,8 +39,8 @@
         
         stories.delegate = details;
         
-        self.navController = [[UINavigationController alloc] initWithRootViewController:stories];
-        self.navRightController = [[UINavigationController alloc] initWithRootViewController:details];
+        self.navController = [[UICustomNavigationController alloc] initWithRootViewController:stories];
+        self.navRightController = [[UICustomNavigationController alloc] initWithRootViewController:details];
         
         details.stories = self.navController;
         
@@ -51,7 +52,7 @@
     }
     else
     {
-        self.navController = [[UINavigationController alloc] initWithRootViewController:stories];
+        self.navController = [[UICustomNavigationController alloc] initWithRootViewController:stories];
     
         self.window.rootViewController = self.navController;
     }

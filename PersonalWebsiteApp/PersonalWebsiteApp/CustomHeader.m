@@ -66,6 +66,13 @@
     CGContextSetFillColorWithColor(context, self.lightColor.CGColor);
     CGContextFillRect(context, self.coloredBoxRect);
     CGContextRestoreGState(context);
+    
+    //add gloss
+    drawGlossAndGradient(context, self.coloredBoxRect, self.lightColor.CGColor, self.darkColor.CGColor);
+    
+    CGContextSetStrokeColorWithColor(context, self.darkColor.CGColor);
+    CGContextSetLineWidth(context, 1.0);
+    CGContextStrokeRect(context, rectFor1PxStroke(self.coloredBoxRect));
 }
 
 @end

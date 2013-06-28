@@ -47,3 +47,15 @@ void draw1PxStroke(CGContextRef context, CGPoint startPoint, CGPoint endPoint, C
     CGContextStrokePath(context);
     CGContextRestoreGState(context);
 }
+
+void drawGlossAndGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor)
+{
+    drawLinearGradient(context, rect, startColor, endColor);
+    
+    UIColor * glossColor1 = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.35];
+    UIColor * glossColor2 = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+    
+    CGRect topHalf = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height/2);
+    
+    drawLinearGradient(context, topHalf, glossColor1.CGColor, glossColor2.CGColor);
+}

@@ -31,6 +31,7 @@
 		E1AC5537177D214B00273012 /* graybg.png in Resources */ = {isa = PBXBuildFile; fileRef = E1AC5536177D214B00273012 /* graybg.png */; };
 		E1AC553E177D2B6F00273012 /* grey_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = E1AC553C177D2B6F00273012 /* grey_@2X.png */; };
 		E1AC553F177D2B6F00273012 /* grey.png in Resources */ = {isa = PBXBuildFile; fileRef = E1AC553D177D2B6F00273012 /* grey.png */; };
+		E1AC5542177D342700273012 /* UICustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1AC5541177D342700273012 /* UICustomNavigationController.m */; };
 		E1B4A4CD1771978800B9D5C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B4A4CC1771978800B9D5C9 /* CoreData.framework */; };
 		E1B4A4D01771995D00B9D5C9 /* Favorite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1B4A4CE1771995D00B9D5C9 /* Favorite.xcdatamodeld */; };
 		E1B4A4D317719B2900B9D5C9 /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B4A4D217719B2900B9D5C9 /* Favorite.m */; };
@@ -72,6 +73,8 @@
 		E1AC5536177D214B00273012 /* graybg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graybg.png; sourceTree = "<group>"; };
 		E1AC553C177D2B6F00273012 /* grey_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grey_@2X.png"; sourceTree = "<group>"; };
 		E1AC553D177D2B6F00273012 /* grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey.png; sourceTree = "<group>"; };
+		E1AC5540177D342700273012 /* UICustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICustomNavigationController.h; sourceTree = "<group>"; };
+		E1AC5541177D342700273012 /* UICustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICustomNavigationController.m; sourceTree = "<group>"; };
 		E1B4A4CC1771978800B9D5C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E1B4A4CF1771995D00B9D5C9 /* Favorite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorite.xcdatamodel; sourceTree = "<group>"; };
 		E1B4A4D117719B2900B9D5C9 /* Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorite.h; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				E16466EE1772CFC500F71617 /* APPStorySelectionDelegate.h */,
 				E14FEF13176A984500F50C85 /* Supporting Files */,
 				E1777A07177A980A007F0B31 /* Custom Cell */,
+				E1AC5540177D342700273012 /* UICustomNavigationController.h */,
+				E1AC5541177D342700273012 /* UICustomNavigationController.m */,
 			);
 			path = PersonalWebsiteApp;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 				E1777A03177A9412007F0B31 /* CustomCellBackground.m in Sources */,
 				E1777A06177A97EF007F0B31 /* Common.m in Sources */,
 				E1777A0A177AAFBF007F0B31 /* CustomHeader.m in Sources */,
+				E1AC5542177D342700273012 /* UICustomNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
