@@ -18,6 +18,8 @@
     Favorite *favorite;
     
     Reachability *internetReachableFoo;
+    
+    NSString *template;
 }
 - (IBAction)favoriteClicked:(id)sender;
 @end
@@ -36,7 +38,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"Available fonts: %@", [UIFont familyNames]);
 //    [self initEverything];
+    
+    template = @"<html><head>\
+    </head>\
+    <style>\
+    body { font-family: Verdana, Gill Sans, Arial; font-size: .9em; margin: 1em; background: url('grey.png'); } \
+    a { color:#FFFF00; text-decoration: none; }\
+    div { background: url(graybg.png); color: #fff; padding: 10px; border-radius: 10px; -moz-border-radius: 10px overflow; word-wrap:break-word; } \
+    </style>\
+    <body><div>\
+    %@\
+    </div></body>\
+    </html>";
+    
+    NSLog(@"%@",template);
+    
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && orientation == UIInterfaceOrientationPortrait ) {
         [self testInternetConnection];
@@ -73,7 +91,7 @@
     //[self.webView loadRequest:urlRequest];
     
     //[self.webView loadHTMLString:self.description baseURL:[NSURL URLWithString:@"http://alimuzaffar.com"]];
-    [self.webView loadHTMLString:self.description baseURL:nil];
+    [self.webView loadHTMLString:[NSString stringWithFormat:template, self.description] baseURL:[[NSBundle mainBundle] bundleURL]];
     //NSLog(self.description);
     //add favorite in nav bar
     
@@ -223,7 +241,7 @@
 - (void)testInternetConnection
 {
     internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
-    APPDetailsViewController *this = self;
+    __unsafe_unretained typeof(self) this = self;
     // Internet is reachable
     internetReachableFoo.reachableBlock = ^(Reachability*reach)
     {
@@ -232,7 +250,7 @@
             NSLog(@"Yayyy, we have the interwebs!");
             if(this.url == nil) {
                 this.title = @"<-- Click \"Stories\" to continue";
-                [this.webView loadHTMLString:@"<center>Click the \"Stories\" button in the top left corner to continue.</center>" baseURL:nil];
+                [this.webView loadHTMLString:[NSString stringWithFormat:this->template, @"<center>Click the \"Stories\" button in the top left corner to continue.</center>"] baseURL:[[NSBundle mainBundle] bundleURL] ];
             }
         });
     };
