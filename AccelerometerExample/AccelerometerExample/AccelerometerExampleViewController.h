@@ -10,7 +10,7 @@
 
 @interface AccelerometerExampleViewController : UIViewController <UIAccelerometerDelegate>
 {
-    UIAccelerometer *cccelerometer;
+    UIAccelerometer *accelerometer;
 }
 
 @property (nonatomic, retain) UIAccelerometer *accelerometer;
