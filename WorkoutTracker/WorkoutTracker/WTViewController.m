@@ -8,6 +8,7 @@
 
 #import "WTViewController.h"
 #import "WTModifyPlanViewController.h"
+#import "WTAddPlanViewController.h"
 
 @interface WTViewController () {
     UIBarButtonItem *btnAdd;
@@ -70,7 +71,7 @@
 
 - (void)onAddClicked:(id)sender
 {
-    WTModifyPlanViewController *modify = [[WTModifyPlanViewController alloc] initWithNibName:@"WTModifyPlanViewController" bundle:nil];
+    WTAddPlanViewController *modify = [[WTAddPlanViewController alloc] initWithNibName:@"WTAddPlanViewController" bundle:nil];
     modify.delegate = self;
     [self.navigationController pushViewController:modify animated:YES];
     [modify release];

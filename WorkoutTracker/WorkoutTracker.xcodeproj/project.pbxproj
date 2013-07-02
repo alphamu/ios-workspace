@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E120927C17824CC500594BA4 /* WTAddPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E120927A17824CC500594BA4 /* WTAddPlanViewController.m */; };
+		E120927D17824CC500594BA4 /* WTAddPlanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E120927B17824CC500594BA4 /* WTAddPlanViewController.xib */; };
+		E120928117824F5700594BA4 /* WTAddRoutineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E120927F17824F5700594BA4 /* WTAddRoutineViewController.m */; };
+		E120928217824F5700594BA4 /* WTAddRoutineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E120928017824F5700594BA4 /* WTAddRoutineViewController.xib */; };
+		E12092861782682F00594BA4 /* WTAddExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12092841782682F00594BA4 /* WTAddExercisesViewController.m */; };
+		E12092871782682F00594BA4 /* WTAddExercisesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E12092851782682F00594BA4 /* WTAddExercisesViewController.xib */; };
 		E1CEFF8F177E9862003943C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CEFF8E177E9862003943C8 /* UIKit.framework */; };
 		E1CEFF91177E9862003943C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CEFF90177E9862003943C8 /* Foundation.framework */; };
 		E1CEFF93177E9862003943C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CEFF92177E9862003943C8 /* CoreGraphics.framework */; };
@@ -25,6 +31,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E120927917824CC500594BA4 /* WTAddPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTAddPlanViewController.h; sourceTree = "<group>"; };
+		E120927A17824CC500594BA4 /* WTAddPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTAddPlanViewController.m; sourceTree = "<group>"; };
+		E120927B17824CC500594BA4 /* WTAddPlanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WTAddPlanViewController.xib; sourceTree = "<group>"; };
+		E120927E17824F5700594BA4 /* WTAddRoutineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTAddRoutineViewController.h; sourceTree = "<group>"; };
+		E120927F17824F5700594BA4 /* WTAddRoutineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTAddRoutineViewController.m; sourceTree = "<group>"; };
+		E120928017824F5700594BA4 /* WTAddRoutineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WTAddRoutineViewController.xib; sourceTree = "<group>"; };
+		E12092831782682F00594BA4 /* WTAddExercisesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTAddExercisesViewController.h; sourceTree = "<group>"; };
+		E12092841782682F00594BA4 /* WTAddExercisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTAddExercisesViewController.m; sourceTree = "<group>"; };
+		E12092851782682F00594BA4 /* WTAddExercisesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WTAddExercisesViewController.xib; sourceTree = "<group>"; };
 		E1CEFF8B177E9862003943C8 /* WorkoutTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1CEFF8E177E9862003943C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1CEFF90177E9862003943C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -98,7 +113,6 @@
 				E1CEFF9F177E9862003943C8 /* WTAppDelegate.h */,
 				E1CEFFA0177E9862003943C8 /* WTAppDelegate.m */,
 				E1CEFFA8177E9862003943C8 /* WorkoutTracker.xcdatamodeld */,
-				E1CEFF97177E9862003943C8 /* Supporting Files */,
 				E1CEFFBA177EA64B003943C8 /* WTViewController.h */,
 				E1CEFFBB177EA64B003943C8 /* WTViewController.m */,
 				E1CEFFBC177EA64B003943C8 /* WTViewController.xib */,
@@ -106,6 +120,16 @@
 				E1CEFFC0177EF84A003943C8 /* WTModifyPlanViewController.m */,
 				E1CEFFC1177EF84A003943C8 /* WTModifyPlanViewController.xib */,
 				E1CEFFC4177EFA19003943C8 /* WTPlanChangeDelegate.h */,
+				E120927917824CC500594BA4 /* WTAddPlanViewController.h */,
+				E120927A17824CC500594BA4 /* WTAddPlanViewController.m */,
+				E120927B17824CC500594BA4 /* WTAddPlanViewController.xib */,
+				E120927E17824F5700594BA4 /* WTAddRoutineViewController.h */,
+				E120927F17824F5700594BA4 /* WTAddRoutineViewController.m */,
+				E120928017824F5700594BA4 /* WTAddRoutineViewController.xib */,
+				E12092831782682F00594BA4 /* WTAddExercisesViewController.h */,
+				E12092841782682F00594BA4 /* WTAddExercisesViewController.m */,
+				E12092851782682F00594BA4 /* WTAddExercisesViewController.xib */,
+				E1CEFF97177E9862003943C8 /* Supporting Files */,
 			);
 			path = WorkoutTracker;
 			sourceTree = "<group>";
@@ -182,6 +206,9 @@
 				E1CEFFA7177E9862003943C8 /* Default-568h@2x.png in Resources */,
 				E1CEFFBE177EA64B003943C8 /* WTViewController.xib in Resources */,
 				E1CEFFC3177EF84A003943C8 /* WTModifyPlanViewController.xib in Resources */,
+				E120927D17824CC500594BA4 /* WTAddPlanViewController.xib in Resources */,
+				E120928217824F5700594BA4 /* WTAddRoutineViewController.xib in Resources */,
+				E12092871782682F00594BA4 /* WTAddExercisesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +224,9 @@
 				E1CEFFAA177E9862003943C8 /* WorkoutTracker.xcdatamodeld in Sources */,
 				E1CEFFBD177EA64B003943C8 /* WTViewController.m in Sources */,
 				E1CEFFC2177EF84A003943C8 /* WTModifyPlanViewController.m in Sources */,
+				E120927C17824CC500594BA4 /* WTAddPlanViewController.m in Sources */,
+				E120928117824F5700594BA4 /* WTAddRoutineViewController.m in Sources */,
+				E12092861782682F00594BA4 /* WTAddExercisesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

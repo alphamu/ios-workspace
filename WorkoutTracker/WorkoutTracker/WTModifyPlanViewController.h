@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "WTPlanChangeDelegate.h"
 
-@interface WTModifyPlanViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+// this id
+
+@interface WTModifyPlanViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, assign) id<WTPlanChangeDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UITableView *routines;

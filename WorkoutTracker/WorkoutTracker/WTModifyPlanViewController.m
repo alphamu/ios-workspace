@@ -12,8 +12,8 @@
     UITableViewCellEditingStyle editingStyle;
 }
 
-@property (copy) NSMutableArray *thingsToLearn;
-@property (copy) NSMutableArray *thingsLearned;
+@property (retain) NSMutableArray *thingsToLearn;
+@property (retain) NSMutableArray *thingsLearned;
 
 @end
 
@@ -21,9 +21,8 @@
 
 -(void)viewDidUnload
 {
-    [_delegate release];
-    [_thingsToLearn release];
-    [_thingsLearned release];
+    [self setThingsToLearn:nil];
+    [self setThingsLearned:nil];
     
     [self setRoutines:nil];
     [self setBtnAddRoutine:nil];
@@ -47,10 +46,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.thingsToLearn = [@[@"Drawing Rects", @"Drawing Gradients", @"Drawing Arcs"] mutableCopy];
-    self.thingsLearned = [@[@"Table Views", @"UIKit", @"Objective-C"] mutableCopy];
-    //    [_routines setDelegate:self]; //set in the nib
-    //    [_routines setDataSource:self]; //set in the nib
+    self.thingsToLearn = [[NSMutableArray alloc] initWithArray:@[@"Drawing Rects", @"Drawing Gradients", @"Drawing Arcs"]];
+    self.thingsLearned = [[NSMutableArray alloc] initWithArray:@[@"Table Views", @"UIKit", @"Objective-C"]];
+    
+    //    [self.routines setDelegate:self]; //set in the nib
+    //    [self.routines setDataSource:self]; //set in the nib
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -107,23 +107,49 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If row is deleted, remove it from the list.
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if(indexPath.section == 0)
+           [self.thingsToLearn removeObjectAtIndex:indexPath.row];
+        else if (indexPath.section == 1)
+            [self.thingsLearned removeObjectAtIndex:indexPath.row];
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        if(indexPath.section == 0)
+            [self.thingsToLearn insertObject:@"Insert" atIndex:indexPath.row];
+        else if (indexPath.section == 1)
+            [self.thingsLearned insertObject:@"Insert" atIndex:indexPath.row];
+        
+        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 -(void)onAddRoutineClicked:(id)sender {
     editingStyle = UITableViewCellEditingStyleInsert;
-    if([_routines isEditing]) {
-        [_routines setEditing:NO animated:YES];
+    if([self.routines isEditing]) {
+        [self.routines setEditing:NO animated:YES];
     } else {
-        [_routines setEditing:YES animated:YES];
+        [self.routines setEditing:YES animated:YES];
     }
     
 }
 
 -(void)onEditRoutineClicked:(id)sender {
     editingStyle = UITableViewCellEditingStyleDelete;
-    if([_routines isEditing]) {
-        [_routines setEditing:NO animated:YES];
+    if([self.routines isEditing]) {
+        [self.routines setEditing:NO animated:YES];
     } else {
-        [_routines setEditing:YES animated:YES];
+        [self.routines setEditing:YES animated:YES];
     }
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning
