@@ -17,4 +17,7 @@
 @property (nonatomic, assign) id<APPStorySelectionDelegate> delegate;
 
 -(void) initEverything;
+-(void) findClicked:(id)sender;
+-(void) favoritesClicked:(id)sender;
+
 @end

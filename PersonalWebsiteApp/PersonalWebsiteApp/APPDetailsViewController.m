@@ -71,12 +71,28 @@
     
     [self initEverything];
 
-    if(self.popController != nil && [self.popController isPopoverVisible]) {
-        [self.popController dismissPopoverAnimated:YES];
-        self.popController = nil;
-    }
-        
+}
 
+- (void)releasePopover
+{
+    [self.popController dismissPopoverAnimated:NO];
+    self.popController.delegate = nil;
+    self.popController = nil;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    NSLog(@"willRotateToInterfaceOrientation");
+    if ([self.popController isPopoverVisible]){
+        [self.popController dismissPopoverAnimated:NO];
+        NSInvocationOperation *invocationOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(releasePopover) object:nil];
+        [[NSOperationQueue mainQueue] addOperation:invocationOperation];
+    }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    [self releasePopover];
 }
 
 - (void)initEverything {

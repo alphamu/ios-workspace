@@ -12,6 +12,7 @@
 #import "Reachability.h"
 #import "CustomCellBackground.h"
 #import "CustomHeader.h"
+#import "APPFavoritesViewController.h"
 
 @interface NSString (JRStringAdditions)
 
@@ -128,6 +129,13 @@
                                 target:self
                                 action:@selector(findClicked:)];
     self.navigationItem.rightBarButtonItem = btnFind;
+    
+    UIBarButtonItem *btnFavorites = [[UIBarButtonItem alloc]
+                                initWithTitle:@"Favorites"
+                                style:UIBarButtonItemStyleBordered
+                                target:self
+                                action:@selector(favoritesClicked:)];
+    self.navigationItem.leftBarButtonItem = btnFavorites;
     
     //Add the search bar
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
@@ -343,7 +351,7 @@
     }
 }
 
--(void)findClicked:(id)sender
+- (void)findClicked:(id)sender
 {
     NSLog(@"findClicked");
     if(searchBar.superview == nil) {
@@ -353,6 +361,15 @@
         [searchBar becomeFirstResponder];
     }
 }
+
+- (void)favoritesClicked:(id)sender
+{
+    NSLog(@"favoriteClicked");
+    APPFavoritesViewController *details = [[APPFavoritesViewController alloc] init];
+    [self.navigationController pushViewController:details animated:YES];
+
+}
+
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {

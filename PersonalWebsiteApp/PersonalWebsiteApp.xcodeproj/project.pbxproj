@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4DF4BCFF17886D810088C32D /* APPFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4BCFE17886D810088C32D /* APPFavoritesViewController.m */; };
 		E13F1387176FF5F50010DDE1 /* ic_action_star_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E13F1386176FF5F50010DDE1 /* ic_action_star_0.png */; };
 		E13F1389176FF61A0010DDE1 /* ic_action_star_10.png in Resources */ = {isa = PBXBuildFile; fileRef = E13F1388176FF61A0010DDE1 /* ic_action_star_10.png */; };
 		E13F138C176FF67E0010DDE1 /* ic_action_star_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E13F138A176FF67E0010DDE1 /* ic_action_star_0@2x.png */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4DF4BCFD17886D810088C32D /* APPFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPFavoritesViewController.h; sourceTree = "<group>"; };
+		4DF4BCFE17886D810088C32D /* APPFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPFavoritesViewController.m; sourceTree = "<group>"; };
 		E13F1386176FF5F50010DDE1 /* ic_action_star_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_star_0.png; sourceTree = "<group>"; };
 		E13F1388176FF61A0010DDE1 /* ic_action_star_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_star_10.png; sourceTree = "<group>"; };
 		E13F138A176FF67E0010DDE1 /* ic_action_star_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_action_star_0@2x.png"; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				E1B4A4D117719B2900B9D5C9 /* Favorite.h */,
 				E1B4A4D217719B2900B9D5C9 /* Favorite.m */,
 				E16466EE1772CFC500F71617 /* APPStorySelectionDelegate.h */,
+				4DF4BCFD17886D810088C32D /* APPFavoritesViewController.h */,
+				4DF4BCFE17886D810088C32D /* APPFavoritesViewController.m */,
 				E14FEF13176A984500F50C85 /* Supporting Files */,
 				E1777A07177A980A007F0B31 /* Custom Cell */,
 				E1AC5540177D342700273012 /* UICustomNavigationController.h */,
@@ -269,6 +274,7 @@
 				E1777A06177A97EF007F0B31 /* Common.m in Sources */,
 				E1777A0A177AAFBF007F0B31 /* CustomHeader.m in Sources */,
 				E1AC5542177D342700273012 /* UICustomNavigationController.m in Sources */,
+				4DF4BCFF17886D810088C32D /* APPFavoritesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
