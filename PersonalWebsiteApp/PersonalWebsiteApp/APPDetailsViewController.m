@@ -80,9 +80,9 @@
     self.popController = nil;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    NSLog(@"willRotateToInterfaceOrientation");
+    NSLog(@"didRotateToInterfaceOrientation");
     if ([self.popController isPopoverVisible]){
         [self.popController dismissPopoverAnimated:NO];
         NSInvocationOperation *invocationOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(releasePopover) object:nil];
