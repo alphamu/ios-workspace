@@ -104,6 +104,9 @@
     //[self.webView loadRequest:urlRequest];
     
     //[self.webView loadHTMLString:self.description baseURL:[NSURL URLWithString:@"http://alimuzaffar.com"]];
+    if (self.description == nil)
+        self.description = @"Loading...";
+    
     [self.webView loadHTMLString:[NSString stringWithFormat:template, self.description] baseURL:[[NSBundle mainBundle] bundleURL]];
     //NSLog(self.description);
     //add favorite in nav bar
@@ -180,6 +183,7 @@
             favorite = (Favorite *)[NSEntityDescription insertNewObjectForEntityForName:@"Favorite" inManagedObjectContext:self.managedObjectContext];
             [favorite setTitle:self.articleTitle];
             [favorite setUrl:self.url];
+            [favorite setDesc:self.description];
             
             //save the changes
             NSError *error = nil;

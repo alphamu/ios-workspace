@@ -13,5 +13,6 @@
 
 @dynamic title;
 @dynamic url;
+@dynamic desc;
 
 @end

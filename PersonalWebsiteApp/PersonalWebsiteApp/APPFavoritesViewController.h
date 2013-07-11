@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APPStorySelectionDelegate.h"
 
 @interface APPFavoritesViewController : UITableViewController
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, assign) id<APPStorySelectionDelegate> delegate;
 
 @end

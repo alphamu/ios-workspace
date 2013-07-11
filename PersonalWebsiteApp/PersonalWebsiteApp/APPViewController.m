@@ -365,8 +365,10 @@
 - (void)favoritesClicked:(id)sender
 {
     NSLog(@"favoriteClicked");
-    APPFavoritesViewController *details = [[APPFavoritesViewController alloc] init];
-    [self.navigationController pushViewController:details animated:YES];
+    APPFavoritesViewController *favs = [[APPFavoritesViewController alloc] init];
+    [favs setManagedObjectContext:self.managedObjectContext];
+    [favs setDelegate:self.delegate];
+    [self.navigationController pushViewController:favs animated:YES];
 
 }
 
